@@ -14,30 +14,30 @@ class App extends Component {
                 A/C
               </div>
               <div className='d-flex'>
-                <Number />
-                <Number />
+                <Number num={7} />
+                <Number num={8} />
               </div>
               <div className='d-flex'>
-                <Number />
-                <Number />
+                <Number num={4} />
+                <Number num={5} />
               </div>
               <div className='d-flex'>
-                <Number />
-                <Number />
+                <Number num={1} />
+                <Number num={2} />
               </div>
               <Zero />
             </div>
             <div className='d-flex flex-grow-1 flex-column'>
-              <Operator />
-              <Number />
-              <Number />
-              <Number />
+              <Operator operator={'/'} />
+              <Number num={9} />
+              <Number num={6} />
+              <Number num={3} />
               <Decimal />
             </div>
             <div className='d-flex flex-grow-1 flex-column'>
-              <Operator />
-              <Operator />
-              <Operator />
+              <Operator operator={'x'} />
+              <Operator operator={'-'} />
+              <Operator operator={'+'} />
               <Equals />
             </div>
           </div>

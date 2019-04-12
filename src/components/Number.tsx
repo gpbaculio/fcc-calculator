@@ -1,7 +1,10 @@
 import React from 'react';
 
-const Number = () => {
-  return <div className='key flex-grow-1 number'>7</div>;
+interface NumberProps {
+  num: number;
+}
+const Number = ({ num }: NumberProps) => {
+  return <div className='key flex-grow-1 number'>{num}</div>;
 };
 
 export default Number;
