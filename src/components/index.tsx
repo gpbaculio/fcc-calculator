@@ -4,3 +4,4 @@ export { default as Operator } from './Operator';
 export { default as Number } from './Number';
 export { default as Zero } from './Zero';
 export { default as Decimal } from './Decimal';
+export { default as Formula } from './Formula';

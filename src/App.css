@@ -21,7 +21,14 @@ body {
   width: inherit;
   height: inherit;
 }
-.key, #display, .operator {
+#formula {
+  padding: 1rem 1rem 0 1rem;
+  font-size: 16px;
+}
+#display {
+  padding: 0 1rem 1rem 1rem;
+}
+.key, .operator {
   padding: 1rem;
 }
 .key:hover, .qual:hover, .clear:hover {

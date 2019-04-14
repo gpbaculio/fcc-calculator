@@ -1,11 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { AppState } from '../store';
 
-const Result = () => {
+interface ResultProps {
+  display: string;
+}
+
+const Result = ({ display }: ResultProps) => {
   return (
     <div id='display' className='text-right'>
-      result
+      {display}
     </div>
   );
 };
 
-export default Result;
+const mapStateToProps = ({ calculator: { display } }: AppState) => ({
+  display
+});
+
+export default connect(mapStateToProps)(Result);

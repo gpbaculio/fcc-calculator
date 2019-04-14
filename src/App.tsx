@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Result, Equals, Operator, Number, Zero, Decimal } from './components';
+import {
+  Result,
+  Equals,
+  Operator,
+  Number,
+  Zero,
+  Decimal,
+  Formula
+} from './components';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +15,10 @@ class App extends Component {
     return (
       <div className='App d-flex justify-content-center align-items-center'>
         <div className='d-flex calc-container flex-column w-25'>
-          <Result />
+          <div className='d-flex flex-column'>
+            <Formula />
+            <Result />
+          </div>
           <div className='d-flex text-center'>
             <div className='keys-container d-flex w-50 flex-column'>
               <div className='flex-grow-1 clear d-flex justify-content-center align-items-center'>
