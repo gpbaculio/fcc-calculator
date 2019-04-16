@@ -9,9 +9,7 @@ interface OperatorProps {
 const Operator = ({ operator, onClick }: OperatorProps) => {
   return (
     <div
-      onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-        onClick({ keyType: 'operator', keyVal: operator })
-      }
+      onClick={() => onClick({ keyType: 'operator', keyVal: operator })}
       className='key operator '>
       {operator}
     </div>

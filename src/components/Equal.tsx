@@ -2,17 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { onClick, onClickArgs } from '../store/calculator/actions';
 
-interface NumberProps {
-  num: number;
+interface EqualProps {
   onClick: ({ keyType, keyVal }: onClickArgs) => void;
 }
 
-const Number = ({ num, onClick }: NumberProps) => {
+const Equal = ({ onClick }: EqualProps) => {
   return (
     <div
-      onClick={() => onClick({ keyType: 'number', keyVal: num.toString() })}
-      className='key flex-grow-1 number'>
-      {num}
+      onClick={() => onClick({ keyType: 'equal', keyVal: null })}
+      className='key equal flex-grow-1 d-flex justify-content-center align-items-center'>
+      =
     </div>
   );
 };
@@ -24,4 +23,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(Number);
+)(Equal);

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
   Result,
-  Equals,
+  Equal,
   Operator,
   Number,
   Zero,
   Decimal,
-  Formula
+  Formula,
+  Clear
 } from './components';
 import './App.css';
 
@@ -21,9 +22,7 @@ class App extends Component {
           </div>
           <div className='d-flex text-center'>
             <div className='keys-container d-flex w-50 flex-column'>
-              <div className='flex-grow-1 clear d-flex justify-content-center align-items-center'>
-                A/C
-              </div>
+              <Clear />
               <div className='d-flex'>
                 <Number num={7} />
                 <Number num={8} />
@@ -49,7 +48,7 @@ class App extends Component {
               <Operator operator={'x'} />
               <Operator operator={'-'} />
               <Operator operator={'+'} />
-              <Equals />
+              <Equal />
             </div>
           </div>
         </div>

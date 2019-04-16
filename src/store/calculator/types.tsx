@@ -1,11 +1,14 @@
-export const ON_CLICK = 'ON_CLICK';
+export const ON_NUM_CLICK = 'ON_NUM_CLICK';
+export const ON_OPERATOR_CLICK = 'ON_OPERATOR_CLICK';
+export const ON_EQUAL_CLICK = 'ON_EQUAL_CLICK';
+export const ON_CLEAR_CLICK = 'ON_CLEAR_CLICK';
 export const add = '+';
 export const subtract = '-';
 export const divide = '/';
 export const multiply = 'x';
 export const asterisk = '*';
 export const operator = 'operator';
-
+export const CLEAR = 'CLEAR';
 export const operators = {
   add,
   subtract,
@@ -20,11 +23,15 @@ export interface CalcState {
 }
 
 interface onClick {
-  type: typeof ON_CLICK;
+  type: typeof ON_NUM_CLICK | typeof ON_OPERATOR_CLICK | typeof ON_EQUAL_CLICK;
   payload: {
     keyVal: string;
     keyType: string;
   };
 }
 
-export type CalcActionTypes = onClick;
+interface onClear {
+  type: typeof ON_CLEAR_CLICK;
+}
+
+export type CalcActionTypes = onClick | onClear;
