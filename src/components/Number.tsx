@@ -4,12 +4,14 @@ import { onClick, onClickArgs } from '../store/calculator/actions';
 
 interface NumberProps {
   num: number;
+  keyId: string;
   onClick: ({ keyType, keyVal }: onClickArgs) => void;
 }
 
-const Number = ({ num, onClick }: NumberProps) => {
+const Number = ({ num, onClick, keyId }: NumberProps) => {
   return (
     <div
+      id={keyId}
       onClick={() => onClick({ keyType: 'number', keyVal: num.toString() })}
       className='key flex-grow-1 number'>
       {num}

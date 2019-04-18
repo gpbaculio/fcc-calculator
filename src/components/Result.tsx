@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { AppState } from '../store';
 
 interface ResultProps {
+  keyId: string;
   display: string;
 }
 
-const Result = ({ display }: ResultProps) => {
+const Result = ({ display, keyId }: ResultProps) => {
   return (
-    <div id='display' className='text-right'>
+    <div id={keyId} className='text-right'>
       {display}
     </div>
   );

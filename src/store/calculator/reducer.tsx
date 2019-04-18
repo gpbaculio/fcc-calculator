@@ -9,7 +9,10 @@ import {
   operators,
   ON_NUM_CLICK,
   ON_EQUAL_CLICK,
-  ON_CLEAR_CLICK
+  ON_CLEAR_CLICK,
+  ON_ZERO_CLICK,
+  ON_DECIMAL_CLICK,
+  decimal
 } from './types';
 
 export const initialState: CalcState = {
@@ -21,13 +24,15 @@ export const initialState: CalcState = {
 export default (state = initialState, action: CalcActionTypes) => {
   switch (action.type) {
     case ON_NUM_CLICK: {
-      const { formula, evaluated } = state,
-        { keyVal } = action.payload;
+      const { formula, evaluated, display } = state,
+        { keyVal } = action.payload,
+        displayVal = `${display}${keyVal}`;
       if (!evaluated) {
         return {
           ...state,
           formula: `${formula}${keyVal === multiply ? asterisk : keyVal}`,
-          display: keyVal
+          display:
+            displayVal.charAt(0) === '0' ? displayVal.substr(1) : displayVal
         };
       }
       if (evaluated) {
@@ -78,6 +83,35 @@ export default (state = initialState, action: CalcActionTypes) => {
         evaluated: true,
         formula: `${formula} = ${result}`,
         display: result.toString()
+      };
+    }
+    case ON_ZERO_CLICK: {
+      const { formula, evaluated, display } = state,
+        { keyVal } = action.payload,
+        endString = display.charAt(display.length - 1);
+      if (!formula.length) {
+        return state;
+      }
+      if (evaluated) {
+        return initialState;
+      }
+      return {
+        ...state,
+        formula: `${formula}${keyVal === multiply ? asterisk : keyVal}`,
+        display: endString === '.' ? `${display}${keyVal}` : keyVal
+      };
+    }
+    case ON_DECIMAL_CLICK: {
+      const { formula, display } = state,
+        { keyVal } = action.payload,
+        endString = display.charAt(display.length - 1);
+      if (display.includes(decimal)) {
+        return state;
+      }
+      return {
+        ...state,
+        formula: `${formula}${keyVal === multiply ? asterisk : keyVal}`,
+        display: `${endString}${keyVal}`
       };
     }
     case ON_CLEAR_CLICK: {

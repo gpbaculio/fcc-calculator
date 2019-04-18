@@ -5,7 +5,9 @@ import {
   ON_NUM_CLICK,
   ON_OPERATOR_CLICK,
   ON_EQUAL_CLICK,
-  ON_CLEAR_CLICK
+  ON_CLEAR_CLICK,
+  ON_ZERO_CLICK,
+  ON_DECIMAL_CLICK
 } from './types';
 
 export interface onClickArgs {
@@ -21,6 +23,10 @@ export const onClick = (
     dispatch({ type: ON_OPERATOR_CLICK, payload });
   } else if (payload.keyType === 'equal') {
     dispatch({ type: ON_EQUAL_CLICK });
+  } else if (payload.keyType === 'zero') {
+    dispatch({ type: ON_ZERO_CLICK, payload });
+  } else if (payload.keyType === 'decimal') {
+    dispatch({ type: ON_DECIMAL_CLICK, payload });
   }
 };
 export const onClear = (): ThunkAction<void, AppState, void, AnyAction> => (

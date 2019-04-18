@@ -18,37 +18,37 @@ class App extends Component {
         <div className='d-flex calc-container flex-column w-25'>
           <div className='d-flex flex-column'>
             <Formula />
-            <Result />
+            <Result keyId={'display'} />
           </div>
           <div className='d-flex text-center'>
             <div className='keys-container d-flex w-50 flex-column'>
-              <Clear />
+              <Clear keyId={'clear'} />
               <div className='d-flex'>
-                <Number num={7} />
-                <Number num={8} />
+                <Number keyId={'seven'} num={7} />
+                <Number keyId={'eight'} num={8} />
               </div>
               <div className='d-flex'>
-                <Number num={4} />
-                <Number num={5} />
+                <Number keyId={'four'} num={4} />
+                <Number keyId={'five'} num={5} />
               </div>
               <div className='d-flex'>
-                <Number num={1} />
-                <Number num={2} />
+                <Number keyId={'one'} num={1} />
+                <Number keyId={'two'} num={2} />
               </div>
-              <Zero />
+              <Zero keyId={'zero'} />
             </div>
             <div className='d-flex flex-grow-1 flex-column'>
-              <Operator operator={'/'} />
-              <Number num={9} />
-              <Number num={6} />
-              <Number num={3} />
-              <Decimal />
+              <Operator keyId={'divide'} operator={'/'} />
+              <Number keyId={'nine'} num={9} />
+              <Number keyId={'six'} num={6} />
+              <Number keyId={'three'} num={3} />
+              <Decimal keyId={'decimal'} />
             </div>
             <div className='d-flex flex-grow-1 flex-column'>
-              <Operator operator={'x'} />
-              <Operator operator={'-'} />
-              <Operator operator={'+'} />
-              <Equal />
+              <Operator keyId={'multiply'} operator={'x'} />
+              <Operator keyId={'subtract'} operator={'-'} />
+              <Operator keyId={'add'} operator={'+'} />
+              <Equal keyId={'equals'} />
             </div>
           </div>
         </div>
