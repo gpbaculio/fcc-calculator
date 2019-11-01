@@ -1,4 +1,5 @@
 import math from 'mathjs';
+import { subtract } from './types';
 import {
   CalcState,
   CalcActionTypes,
@@ -20,6 +21,17 @@ export const initialState: CalcState = {
   display: '0',
   evaluated: false
 };
+const isOperator = /[x/+‑]/,
+  endsWithOperator = /[x+‑/]$/,
+  endsWithNegativeSign = /[x/+]‑$/,
+  clearStyle = { background: '#ac3939' },
+  operatorStyle = { background: '#666666' },
+  equalsStyle = {
+    background: '#004466',
+    position: 'absolute',
+    height: 130,
+    bottom: 5
+  };
 
 export default (state = initialState, action: CalcActionTypes) => {
   switch (action.type) {
@@ -51,12 +63,26 @@ export default (state = initialState, action: CalcActionTypes) => {
         }
         if (endString === keyVal) {
           return state;
+        } // temp.match(/[+\-*/]/g)
+        if (endString === multiply && keyVal === subtract) {
+          console.log('formulaVal ', formulaVal);
+          return {
+            ...state,
+            formula: formulaVal,
+            display: keyVal
+          };
         }
         if (
           Object.values(operators).includes(endString) &&
           endString !== keyVal
         ) {
           formulaVal = formulaVal.slice(0, -2) + formulaKeyVal;
+        }
+        const operatorReg = /(\+|-|\*|\/){2,}/; //checks for consecutive operators in the string
+        let tempOps = formulaVal.match(operatorReg); //this contains the group or groups of consecutive operators
+        if (tempOps != null) {
+          let opBlock = tempOps[0].toString(); //converts the block into string
+          formulaVal = formulaVal.replace(opBlock, tempOps[tempOps.length - 1]); //replaces the block of consecutive operators with the latest one
         }
         return {
           ...state,
@@ -77,12 +103,19 @@ export default (state = initialState, action: CalcActionTypes) => {
       if (evaluated) {
         return state;
       }
-      const result = math.eval(formula);
+      let expression = formula;
+      while (endsWithOperator.test(formula)) {
+        expression = expression.slice(0, -1);
+      }
+      expression = expression.replace(/x/g, '*').replace(/‑/g, '-');
+      let answer = Math.round(1000000000000 * eval(expression)) / 1000000000000;
+
       return {
         ...state,
         evaluated: true,
-        formula: `${formula} = ${result}`,
-        display: result.toString()
+        formula:
+          expression.replace(/\*/g, '⋅').replace(/-/g, '‑') + '=' + answer,
+        display: answer.toString()
       };
     }
     case ON_ZERO_CLICK: {
